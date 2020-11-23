@@ -5,9 +5,8 @@ from adapt.intent import IntentBuilder
 class LedController(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-	self.broker = "192.168.0.105"
+        self.broker = "192.168.0.105"
         self.port = 1883
-
         self.client = paho.Client("LEDController")
         self.client.username_pw_set("jaberan", "temderku5j")
 
@@ -20,8 +19,8 @@ class LedController(MycroftSkill):
 
     @intent_handler(IntentBuilder("").require("StateKeyword").require("LEDKeyword"))	
     def handle_turning_on_off(self, message):
-	self.client.reconnect()
-	self.client.publish("home/livingroom/dimmer", "on")
+        self.client.reconnect()
+        self.client.publish("home/livingroom/dimmer", "on")
 
     def shutdowm(self):
         self.client.disconnect()
