@@ -10,13 +10,8 @@ class LedController(MycroftSkill):
         self.client = paho.Client("LEDController")
         self.client.username_pw_set("jaberan", "temderku5j")
 
-#        self.client.on_publish = on_publish  # assign function to callback
         self.client.connect(self.broker, self.port)  # establish connection
     
-#    @intent_file_handler('controller.led.intent')
-#    def handle_controller_led(self, message):
-#        self.speak_dialog('controller.led')
-
     @intent_handler(IntentBuilder("").require("StateKeyword").require("LEDKeyword"))	
     def handle_turning_on_off(self, message):
         led = message.data.get("LEDKeyword")
